@@ -96,7 +96,8 @@ namespace PictureCapture
                 MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
                 MouseAction(null, new EventArgs());
                 Console.WriteLine((MouseMessages)wParam + "," + hookStruct.pt.x.ToString() + "," + hookStruct.pt.y.ToString());
-                form.PosX = hookStruct.pt.x;
+                form.PosX = hookStruct.pt.x;   
+                form.PosY = hookStruct.pt.y;
                 //如果KeyDown且開始捕捉畫面
                 
                 if (IfKeyDown&&form.CaptureStart)

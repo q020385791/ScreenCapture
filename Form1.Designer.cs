@@ -114,7 +114,7 @@
             // 
             // btnStartCpatureMouse
             // 
-            this.btnStartCpatureMouse.Location = new System.Drawing.Point(477, 197);
+            this.btnStartCpatureMouse.Location = new System.Drawing.Point(57, 197);
             this.btnStartCpatureMouse.Name = "btnStartCpatureMouse";
             this.btnStartCpatureMouse.Size = new System.Drawing.Size(162, 42);
             this.btnStartCpatureMouse.TabIndex = 6;
@@ -124,7 +124,7 @@
             // 
             // btnStopCaptureMouse
             // 
-            this.btnStopCaptureMouse.Location = new System.Drawing.Point(477, 257);
+            this.btnStopCaptureMouse.Location = new System.Drawing.Point(57, 257);
             this.btnStopCaptureMouse.Name = "btnStopCaptureMouse";
             this.btnStopCaptureMouse.Size = new System.Drawing.Size(162, 43);
             this.btnStopCaptureMouse.TabIndex = 7;

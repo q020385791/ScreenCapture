@@ -92,6 +92,8 @@ namespace PictureCapture
             } set 
             {
                 _PosX = value;
+                label1.Text = value.ToString();
+                label1.Refresh();
             } 
         
         }
@@ -104,6 +106,8 @@ namespace PictureCapture
             set
             {
                 _PosY = value;
+                label2.Text = value.ToString();
+                label2.Refresh();
             }
 
         }
@@ -124,11 +128,11 @@ namespace PictureCapture
         {
             IntPtr desktopPtr = GetDC(IntPtr.Zero);
             Graphics g = Graphics.FromHdc(desktopPtr);
-            Pen semiTransPen = new Pen(Color.FromArgb(128, 0, 0, 255), 15);
+            Pen semiTransPen = new Pen(Color.FromArgb(255, 0, 0, 255), 1);
             //SolidBrush b = new SolidBrush(Color.White);
             //g.FillRectangle(b, new Rectangle(0, 0, 200, 200));
-            Pen opaquePen = new Pen(Color.FromArgb(100, 50, 50, 100), 80);
-            g.DrawLine(opaquePen, 0, 20, 100, 20);
+            Pen opaquePen = new Pen(Color.FromArgb(255, 255, 50, 100), 1);
+            g.DrawLine(opaquePen, 0, 0, 200, 100);
             g.Dispose();
             ReleaseDC(IntPtr.Zero, desktopPtr);
             
@@ -139,17 +143,25 @@ namespace PictureCapture
 
             Graphics myGraphics = this.CreateGraphics();
             Size s = Screen.PrimaryScreen.WorkingArea.Size;
-            int ScreenWidth = (int)(Screen.PrimaryScreen.WorkingArea.Width * 1.5);
-            int ScreenHeight = (int)(Screen.PrimaryScreen.WorkingArea.Height * 1.5);
+            IntPtr hdc = GetDC(IntPtr.Zero);
+            float ScaleX = (float)GetDeviceCaps(hdc, DESKTOPHORZRES) / (float)GetDeviceCaps(hdc, HORZRES);
+            float ScaleY = (float)GetDeviceCaps(hdc, DESKTOPVERTRES) / (float)GetDeviceCaps(hdc, VERTRES);
+            ReleaseDC(IntPtr.Zero, hdc);
+            int ScreenWidth = (int)(SystemInformation.PrimaryMonitorSize.Width * ScaleX);
+            int ScreenHeight = (int)(SystemInformation.PrimaryMonitorSize.Height * ScaleY);
             myImage = new Bitmap(ScreenWidth, ScreenHeight, myGraphics);
             Graphics memoryGraphics = Graphics.FromImage(myImage);
             memoryGraphics.CopyFromScreen(new Point(0, 0), new Point(0, 0), new Size(ScreenWidth, ScreenHeight));
-            printDocument1.DefaultPageSettings.PaperSize = new PaperSize("First custom size", 100, 100);
+            printDocument1.DefaultPageSettings.PaperSize = new PaperSize("Full size", ScreenWidth, ScreenHeight);
+            printPreviewDialog1 = new PrintPreviewDialog();
             printPreviewDialog1.Document = printDocument1;
-            //printPreviewDialog1.Show();
+            printPreviewDialog1.Show();
+            myGraphics.Dispose();
+            ReleaseDC(IntPtr.Zero, hdc);
+
             Printsrc();
 
-            //myImage.Save(@"C:\Users\Wan\Desktop\test.jpg", ImageFormat.Jpeg);
+            myImage.Save(@"C:\Users\Wan\Desktop\test.jpg", ImageFormat.Jpeg);
         }
 
         private void btnCapturePart_Click(object sender, EventArgs e)
