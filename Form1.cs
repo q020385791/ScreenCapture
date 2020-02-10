@@ -27,15 +27,6 @@ namespace PictureCapture
 
         public bool CaptureStart { get; set; } = false;
         Bitmap myImage = new Bitmap(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
-        //private void btnCapture_Click(object sender, EventArgs e)
-        //{
-            
-        //}
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -46,10 +37,24 @@ namespace PictureCapture
         {
             e.Graphics.DrawImage(myImage, 0, 0);
         }
-
-        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        private void btnCapturePart_Click(object sender, EventArgs e)
         {
-           
+            //偵測一次ButtonDown and Up
+            CaptureStart = true;
+        }
+
+        private void btnStartCpatureMouse_Click(object sender, EventArgs e)
+        {
+            MouseHook.Start();
+            FakeConsole.Text = "Start Capture Moooouse";
+            MouseHook.form = this;
+        }
+
+        private void btnStopCaptureMouse_Click(object sender, EventArgs e)
+        {
+            MouseHook.stop();
+            FakeConsole.Text = "Stop Capture Moooouse";
+            this.CaptureStart = false;
         }
 
         //螢幕截圖
@@ -65,7 +70,14 @@ namespace PictureCapture
             Graphics memoryGraphics = Graphics.FromImage(TheImage);
             //memoryGraphics.CopyFromScreen(new Point(0, 0), new Point(0, 0), new Size(ScreenWidth, ScreenHeight));
             memoryGraphics.CopyFromScreen(new Point(0, 0), new Point(0, 0), new Size((int)ScreenWidth, (int)ScreenHeight));
-            TheImage.Save(@"C:\Users\Wan\Desktop\test.jpg", ImageFormat.Jpeg);
+            SaveFileDialog TheDialog = new SaveFileDialog();
+            TheDialog.ShowDialog();
+
+            if (TheDialog.FileName != "")
+            {
+                TheImage.Save(TheDialog.FileName+".jpg", ImageFormat.Jpeg);
+            }
+            memoryGraphics.Dispose();
         }
 
         [DllImport("gdi32")]
@@ -123,7 +135,6 @@ namespace PictureCapture
             } 
         }
 
-
         private void btnPaintOnScreen_Click(object sender, EventArgs e)
         {
             IntPtr desktopPtr = GetDC(IntPtr.Zero);
@@ -155,33 +166,15 @@ namespace PictureCapture
             printDocument1.DefaultPageSettings.PaperSize = new PaperSize("Full size", ScreenWidth, ScreenHeight);
             printPreviewDialog1 = new PrintPreviewDialog();
             printPreviewDialog1.Document = printDocument1;
+            //預覽列印
             printPreviewDialog1.Show();
             myGraphics.Dispose();
             ReleaseDC(IntPtr.Zero, hdc);
 
+            //全螢幕截圖存檔
             Printsrc();
-
-            myImage.Save(@"C:\Users\Wan\Desktop\test.jpg", ImageFormat.Jpeg);
         }
 
-        private void btnCapturePart_Click(object sender, EventArgs e)
-        {
-            //偵測一次ButtonDown and Up
-            CaptureStart = true;
-        }
-
-        private void btnStartCpatureMouse_Click(object sender, EventArgs e)
-        {
-            MouseHook.Start();
-            FakeConsole.Text = "Start Capture Moooouse";
-            MouseHook.form = this;
-        }
-
-        private void btnStopCaptureMouse_Click(object sender, EventArgs e)
-        {
-            MouseHook.stop();
-            FakeConsole.Text = "Stop Capture Moooouse";
-            this.CaptureStart = false;
-        }
+ 
     }
 }
