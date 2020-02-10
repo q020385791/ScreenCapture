@@ -99,7 +99,6 @@ namespace PictureCapture
                 form.PosX = hookStruct.pt.x;   
                 form.PosY = hookStruct.pt.y;
                 //如果KeyDown且開始捕捉畫面
-                
                 if (IfKeyDown&&form.CaptureStart)
                 {
                     IntPtr desktopPtr = GetDC(IntPtr.Zero);

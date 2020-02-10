@@ -43,7 +43,7 @@
             // 
             // btnFullScreenCapture
             // 
-            this.btnFullScreenCapture.Location = new System.Drawing.Point(23, 351);
+            this.btnFullScreenCapture.Location = new System.Drawing.Point(23, 331);
             this.btnFullScreenCapture.Name = "btnFullScreenCapture";
             this.btnFullScreenCapture.Size = new System.Drawing.Size(164, 51);
             this.btnFullScreenCapture.TabIndex = 0;
@@ -93,7 +93,7 @@
             // 
             // btnPaintOnScreen
             // 
-            this.btnPaintOnScreen.Location = new System.Drawing.Point(249, 351);
+            this.btnPaintOnScreen.Location = new System.Drawing.Point(249, 331);
             this.btnPaintOnScreen.Name = "btnPaintOnScreen";
             this.btnPaintOnScreen.Size = new System.Drawing.Size(158, 51);
             this.btnPaintOnScreen.TabIndex = 4;
@@ -103,9 +103,9 @@
             // 
             // btnCapturePart
             // 
-            this.btnCapturePart.Location = new System.Drawing.Point(477, 351);
+            this.btnCapturePart.Location = new System.Drawing.Point(469, 331);
             this.btnCapturePart.Name = "btnCapturePart";
-            this.btnCapturePart.Size = new System.Drawing.Size(124, 51);
+            this.btnCapturePart.Size = new System.Drawing.Size(162, 51);
             this.btnCapturePart.TabIndex = 5;
             this.btnCapturePart.Text = "CapturePart";
             this.btnCapturePart.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@
             // 
             // btnStartCpatureMouse
             // 
-            this.btnStartCpatureMouse.Location = new System.Drawing.Point(57, 197);
+            this.btnStartCpatureMouse.Location = new System.Drawing.Point(469, 267);
             this.btnStartCpatureMouse.Name = "btnStartCpatureMouse";
             this.btnStartCpatureMouse.Size = new System.Drawing.Size(162, 42);
             this.btnStartCpatureMouse.TabIndex = 6;
@@ -123,7 +123,7 @@
             // 
             // btnStopCaptureMouse
             // 
-            this.btnStopCaptureMouse.Location = new System.Drawing.Point(57, 257);
+            this.btnStopCaptureMouse.Location = new System.Drawing.Point(637, 267);
             this.btnStopCaptureMouse.Name = "btnStopCaptureMouse";
             this.btnStopCaptureMouse.Size = new System.Drawing.Size(162, 43);
             this.btnStopCaptureMouse.TabIndex = 7;
@@ -135,7 +135,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(811, 450);
             this.Controls.Add(this.btnStopCaptureMouse);
             this.Controls.Add(this.btnStartCpatureMouse);
             this.Controls.Add(this.btnCapturePart);
